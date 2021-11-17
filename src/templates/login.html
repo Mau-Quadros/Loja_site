@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div class="container">
+<input required="required" minlength="4" placeholder="Usuário" id="l_usuario" type="text" name="login_usuario" size="40">
+<br>
+<input required="required" minlength="4" placeholder="Senha" id="l_senha" type="password" name="login_senha" size=40">
+<br>
+<button type="button"  onclick="login()">Login</button>
+<br>
+<p>Não tem uma conta ainda? Click aqui!</p><button type="button" onclick="evento()">Registrar-se</button>
+
+<script>
+    const input_usuario = document.querySelector("#l_usuario")
+    const input_senha = document.querySelector("#l_senha")
+    var login_status = 1
+    onload = function(){
+        usuario = JSON.parse(localStorage.getItem("dados_perfil")) || []
+        }
+
+    function login(){
+        var valor_Login_usuario = input_usuario.value
+        var valor_Login_senha = input_senha.value
+        usuario = JSON.parse(localStorage.getItem("dados_perfil")) || []
+        usuario.forEach(perfil_x =>{
+            if(valor_Login_usuario == perfil_x.user && valor_Login_senha == perfil_x.senha){
+                login_status = 0;
+                window.location.href = "/home"
+            }
+        })
+        if(login_status == 1){
+                alert("Credenciais inválidas ou diferentes")
+             }
+    }
+    function evento(){
+        window.location.href = "/registrar"
+    }
+</script>
+    <style>
+        *{
+            margin:0;
+        }
+        html,body{
+            height: 100%;
+            background-color: #080828;
+        }
+        body{
+            display: grid;
+            place-items:center;
+        }
+        p{
+            color: white;
+        }
+        .container{
+            display: grid;
+            height: 350px;
+            width: 400px;
+            padding: 50px;
+            background-color: #040414;
+
+
+        }
+    </style>
+</div>
+</body>
+</html>

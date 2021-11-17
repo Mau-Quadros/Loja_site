@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+</head>
+<body>
+<div class="container">
+<input required="required" minlength="4" placeholder="Usuário" id="r_usuario" type="text" name="resgistro_usuario" size="40">
+<br>
+<input required="required" minlength="4" placeholder="Senha" id="r_senha" type="password" name="registro_senha" size=40">
+<br>
+<input required="required" minlength="4" placeholder="Confirme Sua Senha" id="r_confirm" type="password" name="registro_confirm" size=40">
+<br>
+<button type="button"  onclick="registrar()">Registrar</button>
+
+<script>
+
+    const input_usuario = document.querySelector("#r_usuario")
+    const input_senha = document.querySelector("#r_senha")
+    const input_confirm = document.querySelector("#r_confirm")
+    var status = 1
+    onload = function(){
+        usuario = JSON.parse(localStorage.getItem("dados_perfil")) || []
+        }
+
+
+    function registrar(){
+        var valor_usuario = input_usuario.value
+        var valor_senha = input_senha.value
+        var valor_confirm = input_confirm.value
+        usuario = JSON.parse(localStorage.getItem("dados_perfil")) || []
+
+        usuario.forEach(perfil_x =>{
+<!--            console.log(perfil_x.user)-->
+            if(valor_usuario == perfil_x.user){
+                alert("conta já existente")
+                status = 0;
+            }
+        })
+
+
+        if(valor_usuario == "" || valor_senha == "" || valor_confirm == ""){
+            alert("campo vazio")
+
+        }
+
+        if(valor_usuario != "" && valor_senha != "" && valor_confirm != "" && status == 1){
+            if(valor_senha == valor_confirm){
+                perfil = {
+                    user:valor_usuario,
+                    senha:valor_senha
+                }
+
+
+                usuario.push(perfil)
+                localStorage.setItem("dados_perfil",JSON.stringify(usuario))
+
+                window.location.href = "/cadastrado"
+            }
+            else{
+                alert("Senhas diferentes")
+            }
+        }
+
+    }
+
+</script>
+    <style>
+        *{
+            margin:0;
+        }
+        html,body{
+            height: 100%;
+            background-color: #080828;
+        }
+        body{
+            display: grid;
+            place-items:center;
+        }
+        p{
+            color: white;
+        }
+        .container{
+            display: grid;
+            height: 350px;
+            width: 400px;
+            padding: 50px;
+            background-color: #040414;
+
+
+        }
+    </style>
+</div>
+</body>
+</html>

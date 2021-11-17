@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<p>Usuário: </p> <input type="text" name="Login_usuario" id="l_usuario" size="10">
+<p>Senha: </p><input type="password" name="Login_senha" id="l_senha" size="10">
+
+<button type="button" onclick="login()">Login</button>
+<br>
+<p>Não tem uma conta ainda? Click aqui!</p><button id="b_cadastrar" type="button" onclick="evento()">Registrar-se</button>
+
+<script>
+    const input_Lusuario = document.querySelector("#l_usuario")
+    const input_Lsenha = document.querySelector("#l_senha")
+    onload = function(){
+        usuario = JSON.parse(localStorage.getItem("dados_perfil")) || []
+        }
+
+    function login(){
+        var valor_Lusuario = input_Lusuario.value
+        var valor_Lsenha = input_Lsenha.value
+        usuario.forEach(perfil_x =>{
+<!--            console.log(perfil_x.user)-->
+            if(valor_Lusuario == perfil_x.user && valor_Lsenha == perfil_x.senha){
+
+            }
+        })
+    }
+
+    function evento(){
+        window.location.href= "/registrar"
+    }
+</script>
+<style>
+    *{
+        margin = 0;
+    }
+    html,body{
+         height: 100%;
+         background-color: #080828;
+    }
+    p{
+         display: inline-block;
+
+         color: white;
+    }
+</style>
+
+
+ <p>home page</p>
+</body>
+</html>
