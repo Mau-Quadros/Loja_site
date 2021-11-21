@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fornecedor</title>
+</head>
+<body>
+ <img id="logo" src="https://thumbs2.imgbox.com/96/a8/LRCS4Rxd_t.png" alt="some text" width="150px" height="150px">
+<div class="container">
+
+    <h1>Bem vindo a sua loja!</h1>
+            <br>
+    <p>Crie um novo produto</p>
+
+        <br>
+    <form action="" method=""></form>
+  <label for="fname"> Nome do produto:</label>
+  <input type="text" id="fname" nome="fname">
+        <br>
+        <br>
+  <label for="lpreco"> Preço do produto:</label>
+  <input type="text" id="lpreco" preco="lpreco">
+        <br>
+        <br>
+
+  <label for="ldescricao">Descrição do produto:</label>
+  <input type="text" id="ldescricao" descricao="ldescricao">
+        <br>
+        <br>
+
+<button type="button" onclick="criar()">Criar</button>
+</div>
+<script>
+    const input_produto = document.querySelector("#fname")
+    const input_preco = document.querySelector("#lpreco")
+    const input_descricao = document.querySelector("#ldescricao")
+    onload = function(){
+        catalogo = JSON.parse(localStorage.getItem("dados_catalogo")) || []
+    }
+    function criar(){
+        var produto_valor = input_produto.value
+        var preco_valor = input_preco.value
+        var descricao_valor = input_descricao.value
+        console.log(input_produto)
+
+        if(produto_valor == "" || preco_valor == "" || descricao_valor == ""){
+            alert("campo vazio")
+        }
+        if(produto_valor != "" && preco_valor != "" && descricao_valor != ""){
+            produtos = {
+                nome: produto_valor,
+                preco: preco_valor,
+                descricao: descricao_valor
+            }
+            catalogo.push(produtos)
+            localStorage.setItem("dados_catalogo", JSON.stringify(catalogo))
+            alert("" + produto_valor + " cadastrado com sucesso")
+        }
+    }
+
+</script>
+
+<style>
+*{
+    margin: 0;
+}
+html, body{
+    height: 100%;
+}
+body{
+    display: grid;
+    place-items: center;
+    background-color: #080828;
+}
+#logo{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 10px 10px;
+}
+.container{
+    display: grid;
+    place-items: center;
+    height: 450px;
+    width: 400px;
+    background-color: #040414;
+    padding-bottom: 10px;
+
+}
+p{
+    font-size: 23px;
+    color: white;
+}
+h1{
+    color: white;
+}
+label{
+    font-size: 20px;
+    color: white;
+}
+input{
+    width: 90%;
+    height: 30px;
+}
+button{
+    width:90%;
+    height: 40px;
+}
+
+</style>
+
+</body>
+</html>
