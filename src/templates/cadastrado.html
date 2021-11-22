@@ -7,11 +7,15 @@
 <body>
     <div class="container">
         <h1>Você foi cadastrado com sucesso</h1>
-        <h2>Agora pegue o botâo</h2>
         <button id="voltar" type="button" onclick="voltar()">Voltar a Home</button>
 
     </div>
-<style>
+    <script>
+        function voltar(){
+            window.location.href = "/home"
+        }
+    </script>
+    <style>
     *{
         margin: 0;
     }
@@ -37,28 +41,6 @@
     margin-left: auto;
     margin-right: auto;
     border: solid 2px purple;
-    animation: bobinho 2s infinite;
-    }
-    #voltar:active{
-    animation-play-state: paused;
-    }
-    @keyframes bobinho{
-
-        0%{
-            transform: translateY(0px);
-        }
-        20%{
-            transform: translateX(500px);
-        }
-        50%{
-            transform: translateY(-100px);
-        }
-        70%{
-            transform: translateX(-500px)
-        }
-        100%{
-            transform: translateY(200px);
-        }
     }
 
 

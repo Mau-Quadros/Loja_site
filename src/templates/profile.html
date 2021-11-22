@@ -53,6 +53,7 @@
         z.onload = function(){
             var img2 = document.querySelector("#img_produto")
             img2.src = z.result
+
         }
     }
 
@@ -78,12 +79,14 @@
             if(produto_valor == "" || preco_valor == "" || descricao_valor == ""){
                 alert("campo vazio")
             }
+            var img3 = document.querySelector("#img_produto")
+
             if(produto_valor != "" && preco_valor != "" && descricao_valor != ""){
                 produtos = {
                     nome: produto_valor,
                     preco: preco_valor,
                     descricao: descricao_valor,
-                    img: valor_img
+                    img: img3.src
                 }
                 catalogo.push(produtos)
                 localStorage.setItem("dados_catalogo", JSON.stringify(catalogo))
