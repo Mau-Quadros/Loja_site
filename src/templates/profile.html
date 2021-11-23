@@ -41,11 +41,7 @@
     var valor_img = file.value
     const imagemProduto = document.querySelector("#img_produto")
     var status_img = 1
-
-<!--    file.addEventListener('change',(event)=>{-->
-<!--        const arquivos = event.target.files;-->
-<!--        console.log(arquivos)-->
-<!--    })-->
+    var count = 0;
 
     var carregar = function(event){
         var z = new FileReader();
@@ -57,17 +53,13 @@
         }
     }
 
-<!--    function loadImg(event){-->
-<!--        var z = new FileReader-->
-<!--        z.onload = function(){-->
-<!--            imagemProduto.src = z.result-->
-<!--        }-->
-<!--        z.readAsDataURL(file.files[0])-->
-<!--        -->
-<!--    }-->
-
     onload = function(){
         catalogo = JSON.parse(localStorage.getItem("dados_catalogo")) || []
+
+    }
+    function contador(){
+        count++;
+        console.log(count)
     }
 
     function criar(){
@@ -81,19 +73,24 @@
             }
             var img3 = document.querySelector("#img_produto")
 
+
             if(produto_valor != "" && preco_valor != "" && descricao_valor != ""){
+
                 produtos = {
                     nome: produto_valor,
                     preco: preco_valor,
                     descricao: descricao_valor,
-                    img: img3.src
+                    img: img3.src,
+                    id: count
                 }
                 catalogo.push(produtos)
                 localStorage.setItem("dados_catalogo", JSON.stringify(catalogo))
                 alert("" + produto_valor + " cadastrado com sucesso")
+                contador()
             }
         }
     }
+
 
 
 </script>

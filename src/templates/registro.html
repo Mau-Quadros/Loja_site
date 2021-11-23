@@ -32,7 +32,6 @@
         usuario = JSON.parse(localStorage.getItem("dados_perfil")) || []
 
         usuario.forEach(perfil_x =>{
-<!--            console.log(perfil_x.user)-->
             if(valor_usuario == perfil_x.user){
                 alert("conta já existente")
                 status = 0;

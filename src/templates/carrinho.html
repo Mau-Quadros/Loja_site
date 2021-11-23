@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho</title>
+</head>
+<body>
+<h1>Seu Carrinho</h1>
+<div class="container" id="02">
+
+</div>
+
+<script>
+    onload = function(){
+        carrinho = JSON.parse(localStorage.getItem("dados_carrinho")) || []
+
+        carrinho.forEach(c =>{
+
+            let divAtual = document.getElementById("02")
+            divAtual.innerHTML += `<div class="produto" id="${c.id}">
+                <img src="${c.img}" class="img3">
+                <div class="produto2">
+                    <p class="p2">${c.nome}</p>
+                    <p class="p2">${"R$ " + c.preco}</p>
+                </div>
+                <p class="p2">${c.descricao}</p>
+                <button id="${c.id}" type="button" onclick="delCar()">Deletar</button>
+            </div>`;
+        })
+    }
+    function delCar(){
+        let del = event.target.id
+        document.getElementById(del).remove()
+        var index = carrinho.findIndex(produto =>
+                        produto.id == del
+                    )
+        carrinho.splice(index,1)
+        localStorage.setItem("dados_carrinho", JSON.stringify(carrinho));
+    }
+</script>
+
+<style>
+    *{
+        margin: 0px;
+    }
+    html,body{
+         height: 100%;
+    }
+    body{
+        background-color: #080828;
+        color: white;
+        display: grid;
+        place-items: center;
+    }
+    .container{
+        color:white;
+    }
+    .img3{
+        height:300px;
+        width:300px;
+    }
+    .produto{
+        display:block;
+        padding-left: 250px;
+        height: 500px;
+        width:500px;
+    }
+    .produto2{
+        display:flex;
+        gap: 20px;
+
+    }
+</style>
+</body>
+</html>

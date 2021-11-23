@@ -62,21 +62,23 @@
 
 </div>
 <script>
+
     onload = function(){
         catalogo = JSON.parse(localStorage.getItem("dados_catalogo")) || []
+        carrinho = JSON.parse(localStorage.getItem("dados_carrinho")) || []
         catalogo.forEach(produto_x =>{
 
             let divAtual = document.getElementById("01")
-            divAtual.innerHTML += `<div class="produto">
+            divAtual.innerHTML += `<div class="produto" >
                 <img src="${produto_x.img}" class="img3">
                 <div class="produto2">
                     <p class="p2">${produto_x.nome}</p>
-                    <p class="p2">${produto_x.preco + " reais"}</p>
+                    <p class="p2">${"R$ " + produto_x.preco}</p>
                 </div>
                 <p class="p2">${produto_x.descricao}</p>
-                <button type="button" onclick="addCar()">Comprar</button>
+                <button id="${produto_x.id}" type="button" onclick="addCar()">Comprar</button>
             </div>`;
-            return catalogo.lastIndexOf(produto_x)
+
         })
     }
     function gotoProfile(){
@@ -86,7 +88,27 @@
         window.location.href = "/carrinho"
     }
     function addCar(){
-
+       let elemento = event.target.id
+       Proaux = {
+        nome:'',
+        preco: 0,
+        descricao:'',
+        img:'',
+        id:0
+       }
+       catalogo.forEach(produto_aux =>{
+         if(produto_aux.id == elemento){
+            Proaux = {
+                nome: produto_aux.nome,
+                preco: produto_aux.preco,
+                descricao: produto_aux.descricao,
+                img: produto_aux.img,
+                id: produto_aux.id
+            }
+            carrinho.push(Proaux)
+            localStorage.setItem("dados_carrinho", JSON.stringify(carrinho))
+         }
+       })
     }
 
 </script>
